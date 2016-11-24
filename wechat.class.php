@@ -62,13 +62,10 @@ class WeChat{
 				$contentStr='高大上的IT培训机构！';
 				break;
 			default:
-				$curl = 'http://www.sobot.com/chat/robot/chat.action';
-				$data =
-'requestText='.$postObj->Content.'&sysNum=4c349791a07b46c1a70b8ac88aa23257&uid=ea24c9b3b0664225af4d21ba94ddbaa0&cid=5347dd7f65b24515b93700ded838d5df';
-				$content = $this->_request($curl, false, 'POST', $data);
-			//	file_put_contents('./tmp',$content);
+				$curl = 'http://api.qingyunke.com/api.php?key=free&appid=0&msg='.$postObj->Content;
+				$content = $this->_request($curl, false, 'GET', null);
 				$content = json_decode($content);
-				$contentStr = $content->answer;
+				$contentStr = $content->content;
 		}
         $resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
         echo $resultStr;
