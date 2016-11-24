@@ -70,9 +70,9 @@ class WeChat{
 					$data['info'] = $content;
 					$curl = 'http://www.tuling123.com/openapi/api';
 					//$contentStr = json_encode($data);
-					$content = $this->_request($curl, false, 'POST', $data);
-					$contentStr = $content;
-					//$contentStr = htmlspecialchars($content->text);
+					$content = $this->_request($curl, false, 'POST', json_encode($data));
+					$contentStr = json_decode($content);
+					$contentStr = htmlspecialchars($content['text']);
 				}else
 				{
 					$contentStr='主人，你好帅！';
