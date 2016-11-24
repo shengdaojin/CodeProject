@@ -65,11 +65,13 @@ class WeChat{
 			default:
 				$pos  = strpos($content,'道金');
 				if($pos === false)
-				{		
-					$curl = 'http://api.qingyunke.com/api.php?key=free&appid=0&msg='.$content;
-					$content = $this->_request($curl, false, 'GET', null);
+				{	
+					$data['key'] = '71c81724c6054dbfa7dc6ab569ed9106';
+					$data['info'] = $content;
+					$curl = 'http://www.tuling123.com/openapi/api';
+					$content = $this->_request($curl, false, 'POST', json_encode($data));
 					$content = json_decode($content);
-					$contentStr = htmlspecialchars($content->content);
+					$contentStr = htmlspecialchars($content->text);
 				}else
 				{
 					$contentStr='主人，你好帅！';
