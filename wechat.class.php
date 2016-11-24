@@ -65,7 +65,7 @@ class WeChat{
 				$curl = 'http://api.qingyunke.com/api.php?key=free&appid=0&msg='.$postObj->Content;
 				$content = $this->_request($curl, false, 'GET', null);
 				$content = json_decode($content);
-				$contentStr = $content->content;
+				$contentStr = htmlspecialchars($content->content);
 		}
         $resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
         echo $resultStr;
