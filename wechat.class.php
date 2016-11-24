@@ -57,7 +57,8 @@ class WeChat{
 			<FuncFlag>0</FuncFlag>
 		</xml>";
 		$msgType = "text";
-		switch($postObj->Content){
+		$content = str_replace(' ','',$postObj->Content);
+		switch($content){
 			case '盛道金':
 				$contentStr='主人，你好帅！';
 				break;
@@ -65,7 +66,7 @@ class WeChat{
 				$pos  = strpos($postObj->Content,'道金');
 				if($pos === false)
 				{		
-					$curl = 'http://api.qingyunke.com/api.php?key=free&appid=0&msg='.$postObj->Content;
+					$curl = 'http://api.qingyunke.com/api.php?key=free&appid=0&msg='.$content;
 					$content = $this->_request($curl, false, 'GET', null);
 					$content = json_decode($content);
 					$contentStr = htmlspecialchars($content->content);
