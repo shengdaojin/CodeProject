@@ -59,8 +59,6 @@ class WeChat{
 		$msgType = "text";
 		switch($postObj->Content){
 			case '盛道金':
-			case 'shengdaojin':
-			case '道金'：
 				$contentStr='主人，你好！';
 				break;
 			default:
