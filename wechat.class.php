@@ -63,7 +63,7 @@ class WeChat{
 				$contentStr='主人，你好帅！';
 				break;
 			default:
-				$pos  = strpos($postObj->Content,'道金');
+				$pos  = strpos($content,'道金');
 				if($pos === false)
 				{		
 					$curl = 'http://api.qingyunke.com/api.php?key=free&appid=0&msg='.$content;
