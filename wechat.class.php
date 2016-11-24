@@ -58,8 +58,10 @@ class WeChat{
 		</xml>";
 		$msgType = "text";
 		switch($postObj->Content){
-			case '传智':
-				$contentStr='高大上的IT培训机构！';
+			case '盛道金':
+			case 'shengdaojin':
+			case '道金'：
+				$contentStr='主人，你好！';
 				break;
 			default:
 				$curl = 'http://api.qingyunke.com/api.php?key=free&appid=0&msg='.$postObj->Content;
