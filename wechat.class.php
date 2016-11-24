@@ -59,13 +59,20 @@ class WeChat{
 		$msgType = "text";
 		switch($postObj->Content){
 			case '盛道金':
-				$contentStr='主人，你好！';
+				$contentStr='主人，你好帅！';
 				break;
 			default:
-				$curl = 'http://api.qingyunke.com/api.php?key=free&appid=0&msg='.$postObj->Content;
-				$content = $this->_request($curl, false, 'GET', null);
-				$content = json_decode($content);
-				$contentStr = htmlspecialchars($content->content);
+				$pos  = strpos($postObj->Content,'道金');
+				if($pos === false)
+				{		
+					$curl = 'http://api.qingyunke.com/api.php?key=free&appid=0&msg='.$postObj->Content;
+					$content = $this->_request($curl, false, 'GET', null);
+					$content = json_decode($content);
+					$contentStr = htmlspecialchars($content->content);
+				}else
+				{
+					$contentStr='主人，你好帅！';
+				}
 		}
         $resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
         echo $resultStr;
