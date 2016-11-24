@@ -68,11 +68,11 @@ class WeChat{
 				{	
 					//$data['key'] = '71c81724c6054dbfa7dc6ab569ed9106';
 					//$data['info'] = $content;
-					$curl = 'http://i.itpk.cn/api.php?question='.$content;
+					$curl = 'http://api.qingyunke.com/api.php?key=free&appid=0&msg='.$content;
 					//$contentStr = json_encode($data);
-					$contentStr = $this->_request($curl, false, 'GET', null);
-					//$contentStr = $content;
-					//$contentStr = htmlspecialchars($content->text);
+					$content = $this->_request($curl, false, 'GET', null);
+					$content = json_decode($content);
+					$contentStr = htmlspecialchars($content->content);
 				}else
 				{
 					$contentStr='主人，你好帅！';
