@@ -75,15 +75,15 @@ class WeChat{
 					$content = json_decode($content);
 					$contentStr = htmlspecialchars($content->content);
 				}
-				if($pos != false && $pos1 === false)
+				if($pos !== false && $pos1 === false)
 				{
 					$contentStr='主人，你好帅！';
 				}
-				if($pos1 != false && $pos === false)
+				if($pos1 !== false && $pos === false)
 				{
 					$contentStr = $this->_getWords();
 				}
-				if($pos1 != false &&　$pos != false)
+				if($pos1 !== false &&　$pos !== false)
 				{
 					$contentStr = "真不知道该咋说你！唉，不说了。。。";	
 				}
