@@ -62,10 +62,12 @@ class WeChat{
 			case '盛道金':
 				$contentStr='主人，你好帅！';
 				break;
+			case '道金':
+				$contentStr='主人，你好帅！';
+				break;
 			default:
-				$pos  = strpos($content,'道金');
-				$pos1  = strpos($content,'贵荣');
-				if($pos === false && $pos1 === false)
+				$pos  = strpos($content,'贵荣');
+				if($pos === false)
 				{	
 					//$data['key'] = '71c81724c6054dbfa7dc6ab569ed9106';
 					//$data['info'] = $content;
@@ -74,19 +76,12 @@ class WeChat{
 					$content = $this->_request($curl, false, 'GET', null);
 					$content = json_decode($content);
 					$contentStr = htmlspecialchars($content->content);
-				}
-				if($pos !== false && $pos1 === false)
-				{
-					$contentStr='主人，你好帅！';
-				}
-				if($pos1 !== false && $pos === false)
+				}else
 				{
 					$contentStr = $this->_getWords();
 				}
-				if($pos1 !== false &&　$pos !== false)
-				{
-					$contentStr = "真不知道该咋说你！唉，不说了。。。";	
-				}
+				 
+				 
 		}
         $resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
         echo $resultStr;
