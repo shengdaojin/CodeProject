@@ -64,7 +64,8 @@ class WeChat{
 				break;
 			default:
 				$pos  = strpos($content,'道金');
-				if($pos === false)
+				$pos1  = strpos($content,'贵荣');
+				if($pos === false && $pos1 === false)
 				{	
 					//$data['key'] = '71c81724c6054dbfa7dc6ab569ed9106';
 					//$data['info'] = $content;
@@ -73,9 +74,18 @@ class WeChat{
 					$content = $this->_request($curl, false, 'GET', null);
 					$content = json_decode($content);
 					$contentStr = htmlspecialchars($content->content);
-				}else
+				}
+				if($pos != false && $pos1 === false)
 				{
 					$contentStr='主人，你好帅！';
+				}
+				if($pos1 != false && $pos === false)
+				{
+					$contentStr = $this->_getWords();
+				}
+				if($pos1 != false &&　$pos != false)
+				{
+					$contentStr = "真不知道该咋说你！唉，不说了。。。";	
 				}
 		}
         $resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
@@ -161,5 +171,28 @@ class WeChat{
 		 $content = $this->_request('https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket='.urlencode($ticket));
 		 return $content;
 	 }
+	
+	public function _getWords()
+	{
+		$words=array(
+			"世上有两种女孩最可爱，一种是漂亮；一种是聪慧，而你是聪明的漂亮女孩。",
+			"我认为世界上最漂亮的女人是维纳斯，接着就是你！",
+			"我好幸运呀，贾宝玉身边有花香袭人的美人，我有眼如水杏般的可爱少女，不比他差，哈哈。",
+			"智慧女人是金子，气质女人是钻石，聪明女人是宝藏，可爱女人是名画，据我考证，你是世界上最大的宝藏，里面装满了金子钻石名画。",
+			"求你不要再打扮了，给其他的女人留点自信吧，",
+			"你的眼神如此撩人，让我忍不住地去吻她，别动，你会让我越陷越深的",
+			"你的头发真美，尤其那种香味让我心神恍惚，哪是你自己的味道。 ",
+			"看你不再看美女请你不要经常出现在街上好吗？不然交通事故会增加的！",
+			"今天肯定没月亮了，因为月亮的光辉都给你遮盖了。 ",
+			"春花秋月，是诗人们歌颂的情景，可是我对于它，却感到十分平凡。只有你嵌着梨涡的笑容，才是我眼中最美的偶象。",
+			"从你的言谈话语中看见你的高贵，从你的举止面貌中看见你的清秀。",
+			"你是那样地美，美得象一首抒情诗。你全身充溢着少女的纯情和青春的风采。留给我印象最深的是你那双湖水般清澈的眸子，以及长长的、一闪一闪的睫毛。像是探询，像是关切，像是问候.",
+			"你像一片轻柔的云在我眼前飘来飘去，你清丽秀雅的脸上荡漾着春天般美丽的笑容。在你那双又大又亮的眼睛里，我总能捕捉到你的宁静，你的热烈，你的聪颖，你的敏感。 ",
+			"你笑起来的样子最为动人，两片薄薄的嘴唇在笑，长长的眼睛在笑，腮上两个陷得很举动的酒窝也在笑。"
+		); 
+		$pos = (rand(0,13);
+		return $words[$pos];
+		
+	}
 }
 ?>
